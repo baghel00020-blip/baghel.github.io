@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>आई जगदंबा ग्रामीण सहकारी पत संस्था</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans Devanagari", Arial, sans-serif;
+      background: #fceaea;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      height: 100vh;
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #7a0c0c;
+      padding-top: 20px;
+      color: white;
+      z-index: 1001;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      background: #b00000;
+      color: white;
+      text-decoration: none;
+      margin: 8px 15px;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .sidebar a:hover {
+      background: #ff1a1a;
+    }
+
+    /* Main content */
+    .content {
+      margin-left: 260px;
+      padding: 20px;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Header with logo + address */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background: #b00000;
+      color: white;
+      padding: 15px;
+      border-radius: 0 0 10px 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      gap: 20px;
+    }
+
+    .header img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 5px solid white;
+    }
+
+    .header-text {
+      text-align: left;
+    }
+
+    .header-text h1 {
+      font-size: 24px;
+      margin: 0;
+      color: #fff;
+      text-shadow: 2px 2px 4px black;
+    }
+
+    .header-text h3, .header-text h4 {
+      margin: 2px 0;
+      font-weight: normal;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    /* Watermark content */
+    .watermark {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-start;
+    }
+
+    .watermark span {
+      white-space: nowrap;
+      font-size: 30px;
+      color: rgba(176, 0, 0, 0.07);
+      margin-bottom: 0;
+    }
+
+    /* Image content */
+    .image-content {
+      display: none;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .image-content img {
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .wait-text {
+      margin-top: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #b00000;
+    }
+
+    /* Ganesh Ji Splash */
+    .splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .splash img {
+      max-width: 300px;
+    }
+
+    /* Tab content */
+    .tab-content {
+      display: none;
+      background: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Splash (Ganesh Ji) -->
+  <div class="splash" id="splash">
+    <div>
+      <img src="ganesh.png" alt="Ganesh Ji">
+      <h1 style="color:red; text-align:center;">ॐ गणेशाय नमः</h1>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Society Menu</h2>
+    <a href="#" onclick="showDurga('home')">Home</a>
+    <a href="#" onclick="showDurga('about')">About Us</a>
+    <a href="#" onclick="showDurga('history')">History</a>
+    <a href="#" onclick="showDurga('vision')">Vision</a>
+    <a href="#" onclick="showDurga('membership')">Membership</a>
+    <a href="#" onclick="showDurga('benefits')">Benefits Of Membership</a>
+    <a href="#" onclick="showDurga('services')">Services</a>
+    <a href="#" onclick="showDurga('activities')">Activities</a>
+    <a href="#" onclick="showDurga('contact')">Contact Us</a>
+  </div>
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="header">
+      <img src="AAI.jpeg" alt="Logo">
+      <div class="header-text">
+        <h1>आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित</h1>
+        <h3>सुधा-वासंत कॉम्प्लेक्स, एम.एस.ई.बी. जवळ, दत्तवाडी, वाडी, नागपूर–२३</h3>
+        <h3>नों. क्र. एन.जी.पी./ए.आर.एन./आर.एस.आर./एम.एस.आर./सी.आर./७९९/०७</h3>
+      </div>
+    </div>
+
+    <!-- Watermark -->
+    <div class="watermark">
+      <span>आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित </span>
+      <span>आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित </span>
+      <span>आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित </span>
+      <span>आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित </span>
+      <span>आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित </span>
+      <span>आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित </span>
+      <span>आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित </span>
+      <span>आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित </span>
+      <span>आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित आई जगदंबा ग्रामीण सहकारी पतसंस्था मर्यादित </span>
+    </div>
+
+    <!-- Durga Maa Image -->
+    <div class="image-content" id="imageContent">
+      <img src="durga.jpeg" alt="Maa Durga">
+      <div class="wait-text">WAIT...</div>
+    </div>
+
+    <!-- Tab contents -->
+    <div id="home" class="tab-content active">
+      <h1 style="color:red;">Welcome</h1>
+      <p  style="color:#F08080;"><b>We warmly welcome you to AAI Jagdamba Gramin Sahakari Pat Sanstha Maryadit.
+Our society is dedicated to the vision of empowering rural communities through cooperation, trust, and self-reliance.
+ Established with the belief that collective growth is the foundation of sustainable development, the society strives to bring 
+financial stability, social welfare, and equal opportunities to every member of the community.
+
+The cooperative is not just an institution but a platform where individuals come together to support one another, 
+to share resources, and to uplift the standard of living of rural families. Through our programs, services, and initiatives,
+ we focus on improving financial literacy, creating avenues for employment, and ensuring that the benefits of cooperation reach the grassroots level.
+
+We firmly believe that the strength of our society lies in the active participation of our members. 
+Each member plays an important role in shaping the future of this cooperative. By joining hands, we are not only addressing immediate 
+financial needs but also laying the foundation for long-term prosperity and stability in rural areas.</b></p>
+
+<ul style="color:#F08080;"><b>Our commitment is to foster:
+
+<li>Collective Growth: Working together to achieve shared goals.
+
+<li>Self-Reliance: Encouraging independence and empowerment among members.</li>
+
+<li>Sustainability: Promoting practices that ensure long-term development.</li>
+
+<li>Social Responsibility: Contributing to the welfare of the entire community.</li></b></ul>
+
+<p style="color:#F08080;"><b>As you become a part of this journey, we extend our gratitude for your trust and faith in the cooperative movement. With your support,
+ AAI Jagdamba Gramin Sahakari Pat Sanstha Maryadit will continue to be a guiding light in strengthening communities, promoting equality, 
+and building a brighter future for generations to come.</b></p>
+    </div>
+
+    <div id="about" class="tab-content">
+      <h2 style="color:red;">About Us</h2>
+      <p style="color:#FA8072;"><b>AAI Jagdamba Gramin Sahakari Pat Sanstha Maryadit is a cooperative institution established with the objective of
+ promoting financial inclusion, social development, and economic empowerment in rural areas. Founded on the principles of
+ cooperation, transparency, and mutual support, the society serves as a trusted platform where individuals unite to achieve common goals for collective prosperity.
+
+Our society works with the mission of improving the quality of life of its members by providing reliable financial services, 
+encouraging savings, and offering support in times of need. We strongly believe that development is most effective when it comes from 
+within the community, and hence, our cooperative model ensures active participation of every member in decision-making.
+
+Over the years, the society has built a reputation of integrity and service to its members. With dedicated leadership and enthusiastic
+ participation, we have created opportunities for sustainable growth while fostering a culture of trust and cooperation.</b></p>
+
+<ul  style="color:#FA8072;"><b> Key Features of Our Society:
+
+<li>Financial Empowerment: Offering safe and accessible financial solutions.</li>
+
+<li>Community Development: Strengthening rural livelihoods through cooperation.</li>
+
+<li>Transparency & Trust: Ensuring fairness in every process.</li>
+
+<li>Member-Oriented Services: Prioritizing the needs and welfare of members.</li>
+
+<li>Sustainability: Focusing on long-term benefits rather than short-term gains.</li></b></p>
+
+<p style="color:#FA8072;"><b>The society continues to stand as a symbol of unity and progress in the rural community. With every initiative, we remain committed to serving
+ our members with honesty, dedication, and responsibility, ensuring that AAI Jagdamba Gramin Sahakari Pat Sanstha Maryadit remains a guiding institution for
+ rural growth and cooperative strength.</b></p>
+    </div>
+
+    <div id="history" class="tab-content">
+      <h2 style="color:#CD5C5C;">History</h2>
+      <p style="color:#CD5C5C;"><b>The foundation of AAI Jagdamba Gramin Sahakari Pat Sanstha Maryadit is rooted in the vision and dedication of a single individual, 
+Shri Kishor Pandurang Kawre. With a strong belief in the principles of cooperation and community development, he initiated the idea of forming a cooperative 
+society to support the financial and social needs of people in rural areas.
+
+His determination and leadership led to the establishment of the society, which has now grown into a trusted institution serving numerous members. 
+What began as the dream of one person has today transformed into a collective movement, bringing together individuals under one platform for mutual benefit
+ and prosperity.
+
+Over the years, the society has expanded its activities, introduced new services, and strengthened its role as a pillar of financial support and community
+ development. The efforts of Shri Kishor Pandurang Kawre continue to inspire members and guide the society towards greater heights.</b></p>
+    </div>
+
+    <div id="vision" class="tab-content">
+      <h2 style="color:#FF6347;">Vision</h2>
+      <p style="color:#FF6347;"><b>Our vision is to build a self-reliant, progressive, and inclusive cooperative society that empowers 
+every member to achieve financial independence, social security, and sustainable growth.
+
+We aspire to be recognized as a model cooperative institution that upholds the values of trust, transparency, and community welfare 
+while ensuring the holistic development of rural areas.</p></b>
+
+<ul  style="color:#FF6347;"><b>Our Core Vision Statements:
+
+<li>Empowerment: To enable every member to lead a dignified life through financial stability and social support.</li>
+
+<li>Sustainability: To create long-term opportunities for economic and social well-being of the community.</li>
+
+<li>Inclusivity: To ensure that every section of society, especially rural and underprivileged groups, benefits equally.</li>
+
+<li>Innovation: To adopt modern methods and technologies while maintaining cooperative values.</li>
+
+<li>Integrity: To work with honesty, fairness, and responsibility in all our operations.</li></b></ul>
+
+<p style="color:#FF6347;"><b>Through our vision, we aim to transform collective strength into meaningful progress, making AAI Jagdamba Gramin Sahakari Pat Sanstha Maryadit 
+a pillar of trust and growth for generations to come.</b></p>
+    </div>
+
+    <div id="membership" class="tab-content">
+      <h2 style="color:#B22222;">Membership</h2>
+      <p style="color:#B22222;"><b>Any individual can become a member of AAI Jagdamba Gramin Sahakari Pat Sanstha Maryadit by depositing a 
+certain amount of money as share capital or membership fee, as decided by the society. Membership is open to all who are willing to follow the rules,
+ regulations, and principles of the cooperative society.</p></b>
+
+<ul style="color:#B22222;"><b>Key Points of Membership:
+
+<li>A person becomes a member by depositing the required share amount with the society.</li>
+
+
+<li>Every member enjoys equal rights and responsibilities irrespective of the amount of money contributed.</li>
+
+
+<li>Members are entitled to avail financial and non-financial services offered by the society.</li>
+
+
+<li>Every member has the right to participate in decision-making and elect representatives in the society’s management.</li>
+
+
+<li>Membership promotes the spirit of unity, cooperation, and collective progress.</li></b></ul>
+
+ <p style="color:#B22222;"><b>Thus, becoming a member is not only about depositing money but also about joining hands in building a strong and self-reliant cooperative institution.</b></p>
+    </div>
+
+     <div id="benefits" class="tab-content">
+      <h2 style="color:#FA8072;">Benefits Of Membership</h2>
+      <ul style="color:#FA8072;"><b>Key Benefits:
+
+<li>Low-Interest Loans: Members can avail loans at comparatively lower rates of interest than market or private lenders, making financial support easily accessible.</li>
+
+<li>Encouragement of Savings: Safe deposit and recurring savings schemes are available for members to build financial discipline.</li>
+
+<li>Profit Sharing: Surplus income or profit earned by the society is distributed among members in proportion to their participation.</li>
+
+<li>Financial Security: Members get access to emergency financial support during times of need.</li>
+
+<li>Democratic Participation: Every member has equal voting rights and can actively participate in decision-making.</li>
+
+<li>Community Development: Benefits are not limited to individuals but extend to the entire rural community through cooperative efforts.</li>
+
+Thus, membership ensures not only economic relief through low-interest loans but also strengthens the spirit of cooperation, unity, and mutual growth.</b></ul>
+</div>
+
+    <div id="services" class="tab-content">
+      <h2 style="color:#DC143C;">Services</h2>
+      <p style="color:#DC143C;"><b>The AAI Jagdamba Gramin Sahakari Pat Sanstha Maryadit offers a wide range of financial services to its members, 
+designed to meet their day-to-day requirements and support their long-term financial growth. The society focuses on providing easy access to loans as well as 
+safe and reliable savings options.</b></p>
+
+ <ul style="color:#DC143C;"><b>Loans
+
+<li>Regular Loan – Offered to members for personal and business purposes at affordable interest rates.</li>
+
+<li>Loan on FD – Facility to borrow money against the security of Fixed Deposits, ensuring quick approval and low interest.</li>
+
+<li>Loan on RD – Members can avail loans against their Recurring Deposits, making savings flexible and useful in emergencies.</li>
+
+<li>Loan on DL (Daily Loan) – Small short-term loans provided to meet immediate needs, with daily repayment facility.</li></b></ul>
+
+ <ul style="color:#DC143C;"><b>Accounts
+
+<li>Saving Account – Secure and reliable saving option for members with attractive interest.</li>
+
+<li>Recurring Deposit (RD) – Facility to save regularly in small amounts, encouraging the habit of systematic savings.</li>
+
+<li>Fixed Deposit (FD) – Long-term saving option with higher interest benefits.</li>
+
+<li>Daily Collection (DL) – Special facility where members can deposit small amounts daily, providing flexibility and discipline in money management.</li></b></ul>
+    </div>
+
+    <div id="activities" class="tab-content">
+      <h2 style="color:#800000;">Activities</h2>
+      <p style="color:#800000;"><b>The AAI Jagdamba Gramin Sahakari Pat Sanstha Maryadit is actively engaged in providing various banking and credit facilities to
+ its members. The core objective of the society’s activities is to ensure financial inclusion, promote savings, and make credit accessible at reasonable terms.</b></p>
+
+<ul style="color:#800000;"><b>Banking Facilities
+
+<li>The society offers multiple deposit schemes such as Saving Accounts, Recurring Deposits (RD), Fixed Deposits (FD), and Daily Collection (DL), allowing members 
+to save systematically according to their convenience.</li>
+
+<li>These banking services not only encourage the habit of saving among rural households but also provide them with a secure place to keep their earnings.</li>
+
+<li>The society also ensures transparency and trust in its banking operations, creating a reliable financial environment for its members.</li></b></ul>
+
+<ul style="color:#800000;"><b>Credit Facilities
+
+<li>The society provides Regular Loans, Loans on FD, Loans on RD, and Daily Loans (DL), supporting members in times of financial need.</li>
+
+<li>Credit facilities are extended at reasonable interest rates, making them highly beneficial as compared to traditional moneylenders.</li>
+
+<li>These loans help members in meeting personal, agricultural, business, and emergency expenses without financial stress.</li>
+
+<li>By offering such credit services, the society plays a vital role in promoting self-reliance and economic growth among its members.</li></b></ul>
+
+<p style="color:#800000;"><b>Community-Oriented Activities
+
+Apart from financial services, the society also participates in activities that strengthen the sense of cooperation and community welfare. Awareness 
+programs are organized to educate members about savings, loans, and financial discipline. Through these efforts, the society is not only fulfilling its role
+ as a financial institution but also contributing to the overall development of rural society.</b></p>
+    </div>
+
+    <div id="contact" class="tab-content">
+      <h2 style="color:#C21E56;">Contact Us</h2>
+      <p style="color:#C21E56;"><b>The AAI Jagdamba Gramin Sahakari Pat Sanstha Maryadit welcomes all queries, feedback, and 
+communication from its valued members and the general public. The society believes in maintaining transparency and accessibility by ensuring that 
+members can easily reach out for any assistance or information.</b></p>
+
+ <ul style="color:#C21E56;"><b>Office Address
+
+<li>📍 Shree Wagh Complex, Amravati Road, Dattawadi, Nagpur, Maharashtra – 440023</li></b></ul>
+
+<ul style="color:#C21E56;"><b>Contact Number
+
+<li>📞 8600994355</li></b></ul>
+
+<ul style="color:#C21E56;"><b>Email Address
+
+<li>📧 aaijagdambasahakaripatsansthamaryadit@gmail.com</li></b></ul>
+
+<ul style="color:#C21E56;"><b>Office Hours
+
+<li>🕘 Monday to Saturday: 11:00 AM – 05:00 PM
+(Sundays and public holidays closed)</li></b></ul>
+    </div>
+  </div>
+
+  <script>
+    // Splash screen (Ganesh Ji for 3 sec)
+    window.onload = function() {
+      setTimeout(() => {
+        document.getElementById("splash").style.display = "none";
+      }, 3000);
+    };
+
+    // Show Durga Maa image then tab content
+    function showDurga(tabId) {
+      const content = document.getElementById("imageContent");
+      const tabs = document.querySelectorAll(".tab-content");
+
+      // hide all tabs
+      tabs.forEach(tab => tab.classList.remove("active"));
+
+      // show durga maa image
+      content.style.display = "block";
+
+      setTimeout(() => {
+        content.style.display = "none";
+        document.getElementById(tabId).classList.add("active");
+      }, 3000); // 3 sec
+    }
+  </script>
+
+</body>
+</html>
